@@ -38,7 +38,7 @@ public class TwitterClient extends OAuthBaseClient {
     public static final String REST_URL = "http://api.twitter.com";
     public static final String REST_CONSUMER_KEY = "SOME_KEY_HERE";
     public static final String REST_CONSUMER_SECRET = "SOME_SECRET_HERE";
-    public static final String REST_CALLBACK_URL = "oauth://arbitraryname.com";
+    public static final String REST_CALLBACK_URL = "x-oauthflow-twitter://arbitraryname.com";
 
     public TwitterClient(Context context) {
         super(context, REST_API_CLASS, REST_URL,
@@ -70,7 +70,7 @@ with the `REST_CALLBACK_URL` defined in the client:
       <category android:name="android.intent.category.BROWSABLE" />
 
       <data
-          android:scheme="oauth"
+          android:scheme="x-oauthflow-twitter"
           android:host="arbitraryname.com"
       />
   </intent-filter>
@@ -78,6 +78,8 @@ with the `REST_CALLBACK_URL` defined in the client:
 ```
 
 If the manifest does not have a matching `intent-filter` then the OAuth flow will not work.
+
+Note that `arbitraryname.com` can be any string. It must correspond to the value of `REST_CALLBACK_URL` in `TwitterClient.java`, but it need not match the value that you may have provided for a callback URL on the Twitter developer settings for your app.
 
 ### Creating a LoginActivity
 
